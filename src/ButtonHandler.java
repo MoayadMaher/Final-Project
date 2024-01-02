@@ -19,24 +19,15 @@ public class ButtonHandler implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event) {
-        if (firstFrame != null) {
-            if (event.getSource() == firstFrame.getExitButton()) {
-                System.exit(0);
-            } else if (event.getSource() == firstFrame.getNextPageButton()) {
-                String selected = (String) firstFrame.getInstructorSelectComboBox().getSelectedItem();
-                SecondFrame frame2 = new SecondFrame(selected, firstFrame);
-                frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame2.setSize(500, 500);
-                frame2.setVisible(true);
-                firstFrame.setVisible(false);
-            }
-        }
 
         if (secondFrame != null) {
 
+            // Get the selected instructor name from the combo box
+            // and construct the path to the instructor's folder
             String selectedInstructor = firstFrame.getInstructorSelectComboBox().getSelectedItem().toString();
             String path = "C:\\Users\\mmj_p\\Documents\\JavaFinalProject\\" + selectedInstructor;
 
+            // Add Student Button handler
             if (event.getSource() == secondFrame.getAddStudentButton()) {
 
                 // Get the student name and grade from the text fields
@@ -88,9 +79,7 @@ public class ButtonHandler implements ActionListener {
             }
 
             // AvgMinMax Button handler
-            if (event.getSource() == secondFrame.getAvgMinMaxButton()) {
 
-            }
 
 
             // Back Button handler
