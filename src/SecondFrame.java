@@ -28,7 +28,7 @@ public class SecondFrame  extends JFrame {
 
     Font f = new Font("Arial", Font.BOLD, 16);
 
-    public SecondFrame (String selected){
+    public SecondFrame (String selected, FirstFrame firstFrame){
         super("تسجيل العلامات");
         gridLayout = new GridLayout(4, 3, 5, 5);
         container = getContentPane();
@@ -92,12 +92,18 @@ public class SecondFrame  extends JFrame {
         add(new JScrollPane(Output));
 
         // Subject List
-        SubjectList = new JList(Subjects0);
+        if (selected.equals("م. مازن ابوزاهر")) {
+            SubjectList = new JList(Subjects0);
+        } else if (selected.equals("د. رشاد رصرص")) {
+            SubjectList = new JList(Subjects1);
+        } else {
+            SubjectList = new JList(Subjects2);
+        }
         SubjectList.setFont(f);
         add(SubjectList);
 
         //create new ButtonHandler for button event handling
-        ButtonHandler handler = new ButtonHandler(this); // Pass 'this' to refer to the current SecondFrame instance
+        ButtonHandler handler = new ButtonHandler(firstFrame,this); // Pass 'this' to refer to the current SecondFrame instance
         AddStudent.addActionListener(handler);
         AvgMinMax.addActionListener(handler);
         SearchStudent.addActionListener(handler);
@@ -131,4 +137,8 @@ public class SecondFrame  extends JFrame {
     public JList getSubjectList() {
         return SubjectList;
     }
+    public JTextArea getOutputTextArea() {
+        return Output;
+    }
+
 }

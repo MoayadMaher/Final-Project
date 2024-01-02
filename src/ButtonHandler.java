@@ -13,52 +13,52 @@ public class ButtonHandler implements ActionListener {
     private FirstFrame firstFrame;
     private SecondFrame secondFrame;
 
-    // Constructor for FirstFrame
-    public ButtonHandler(FirstFrame firstFrame) {
+    public ButtonHandler(FirstFrame firstFrame, SecondFrame secondFrame) {
         this.firstFrame = firstFrame;
-    }
-
-    // Constructor for SecondFrame
-    public ButtonHandler(SecondFrame secondFrame) {
         this.secondFrame = secondFrame;
     }
 
     public void actionPerformed(ActionEvent event) {
-        // Handling events for FirstFrame
         if (firstFrame != null) {
             if (event.getSource() == firstFrame.getExitButton()) {
                 System.exit(0);
             } else if (event.getSource() == firstFrame.getNextPageButton()) {
-                // get combo box selected item
                 String selected = (String) firstFrame.getInstructorSelectComboBox().getSelectedItem();
-                SecondFrame frame2 = new SecondFrame(selected); // create SecondFrame
+                SecondFrame frame2 = new SecondFrame(selected, firstFrame);
                 frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame2.setSize(500, 500); // set frame size
-                frame2.setVisible(true); // display frame
+                frame2.setSize(500, 500);
+                frame2.setVisible(true);
                 firstFrame.setVisible(false);
             }
         }
 
-        // Handling events for SecondFrame
         if (secondFrame != null) {
-            // change directory to the folder of selected instructor
+
+            // go to the instructor's folder
             String selectedInstructor = firstFrame.getInstructorSelectComboBox().getSelectedItem().toString();
             String path = "C:\\Users\\mmj_p\\Documents\\JavaFinalProject\\" + selectedInstructor;
 
-            if (event.getSource() == secondFrame.getAddStudentButton()){
-                // get student name and grade
+            // set output text area to path
+            secondFrame.getOutputTextArea().setText(path);
+
+            /*
+            if (event.getSource() == secondFrame.getAddStudentButton()) {
+
+                // get the student name and grade
                 String studentName = secondFrame.getStudentNameTextField().getText();
                 String studentGrade = secondFrame.getStudentGradeTextField().getText();
 
-                // if there is no file cerate a new one for the selected subject
+                // create the file if it doesn't exist
                 File file = new File(path + "\\" + secondFrame.getSubjectList().toString() + ".txt");
+
                 if (!file.exists()) {
                     try {
                         file.createNewFile();
                     } catch (Exception e) {
                         System.out.println(e);
                     }
-                // add student name and grade to the file
+
+                }
                 try {
                     FileWriter writer = new FileWriter(file, true);
                     writer.write(studentName + "\n");
@@ -67,17 +67,38 @@ public class ButtonHandler implements ActionListener {
                 } catch (Exception e) {
                     System.out.println(e);
                 }
+            }
+            */
 
+
+
+            // Show Students Button handler
+            if (event.getSource() == secondFrame.getShowStudentsButton()) {
+                File file = new File(path + "\\" + secondFrame.getSubjectList().toString() + ".txt");
+                try {
+                    Scanner scanner = new Scanner(file);
+                    String output = "";
+                    while (scanner.hasNextLine()) {
+                        output += scanner.nextLine() + "\n";
+                    }
+                    secondFrame.getOutputTextArea().setText(output);
+                    scanner.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             }
 
+            // AvgMinMax Button handler
+
+
+            // Back Button handler
             if (event.getSource() == secondFrame.getBackButton()) {
-                FirstFrame frame1 = new FirstFrame(); // create FirstFrame
+                FirstFrame frame1 = new FirstFrame();
                 frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame1.setSize(500, 500); // set frame size
-                frame1.setVisible(true); // display frame
+                frame1.setSize(500, 500);
+                frame1.setVisible(true);
                 secondFrame.setVisible(false);
             }
         }
     }
-}
 }

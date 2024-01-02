@@ -15,6 +15,7 @@ public class FirstFrame extends JFrame {
 
     // String array of instructors
     private String[] Instructors = {"م. مازن ابوزاهر", "د. أشرف الشرعة", "د. رشاد رصرص"};
+    //private String[] Instructors = {"Eng.Mazen Abu Zaher", "Dr. Ashraf Alsharaa", "Dr.Rashad Rasras"};
 
     Font f = new Font("Arial", Font.BOLD, 16);
 
@@ -55,7 +56,10 @@ public class FirstFrame extends JFrame {
         add(InstructorSelect);
 
         // Instantiate ButtonHandler for button event handling
-        ButtonHandler handler = new ButtonHandler(this); // Pass 'this' to refer to the current FirstFrame instance
+        ButtonHandler handler = new ButtonHandler(this,null);
+        // Pass 'this' to refer to the current FirstFrame instance
+        // Pass null to refer to there in no need to refer to SecondFrame instance
+
         Exit.addActionListener(handler);
         NextPage.addActionListener(handler);
     }
@@ -72,4 +76,5 @@ public class FirstFrame extends JFrame {
     public JComboBox<String> getInstructorSelectComboBox() {
         return InstructorSelect;
     }
+
 }
