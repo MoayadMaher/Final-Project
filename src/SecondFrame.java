@@ -1,8 +1,5 @@
 import javax.swing.*;
-import java.util.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class SecondFrame  extends JFrame {
 
@@ -28,7 +25,7 @@ public class SecondFrame  extends JFrame {
 
     Font f = new Font("Arial", Font.BOLD, 16);
 
-    public SecondFrame (String selected, FirstFrame firstFrame){
+    public SecondFrame (FirstFrame firstFrame){
         super("تسجيل العلامات");
         gridLayout = new GridLayout(4, 3, 5, 5);
         container = getContentPane();
@@ -92,9 +89,10 @@ public class SecondFrame  extends JFrame {
         add(new JScrollPane(Output));
 
         // Subject List
-        if (selected.equals("م. مازن ابوزاهر")) {
+        String selectedInstructor = firstFrame.getInstructorSelectComboBox().getSelectedItem().toString();
+        if (selectedInstructor.equals("م. مازن ابوزاهر")) {
             SubjectList = new JList(Subjects0);
-        } else if (selected.equals("د. رشاد رصرص")) {
+        } else if (selectedInstructor.equals("د. رشاد رصرص")) {
             SubjectList = new JList(Subjects2);
         } else {
             SubjectList = new JList(Subjects1);

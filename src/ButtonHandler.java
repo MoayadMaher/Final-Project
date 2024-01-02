@@ -32,14 +32,9 @@ public class ButtonHandler implements ActionListener {
     public void actionPerformed(ActionEvent event) {
 
         if (firstFrame != null) {
-
             // Next Page Button handler
             if (event.getSource() == firstFrame.getNextPageButton()) {
-                // Get the selected instructor name from the combo box
-                String selectedInstructor = firstFrame.getInstructorSelectComboBox().getSelectedItem().toString();
-
-                // Create a new SecondFrame instance
-                SecondFrame frame2 = new SecondFrame(selectedInstructor, firstFrame);
+                SecondFrame frame2 = new SecondFrame(firstFrame);
                 frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame2.setSize(500, 500);
                 frame2.setVisible(true);
@@ -160,7 +155,7 @@ public class ButtonHandler implements ActionListener {
 
         try {
             Scanner scanner = new Scanner(file);
-            ArrayList<Integer> grades = new ArrayList<Integer>();
+            ArrayList<Integer> grades = new ArrayList();
             while (scanner.hasNextLine()) {
                 scanner.nextLine();
                 grades.add(Integer.parseInt(scanner.nextLine()));

@@ -9,13 +9,11 @@ public class FirstFrame extends JFrame {
     private GridLayout gridLayout;
     private JLabel emptyLabel;
     private JLabel MainLabel;
-    private JComboBox<String> InstructorSelect;
+    private JComboBox InstructorSelect;
     private JButton NextPage;
     private JButton Exit;
 
-    // String array of instructors
     private String[] Instructors = {"م. مازن ابوزاهر", "د. أشرف الشرعة", "د. رشاد رصرص"};
-    //private String[] Instructors = {"Eng.Mazen Abu Zaher", "Dr. Ashraf Alsharaa", "Dr.Rashad Rasras"};
 
     Font f = new Font("Arial", Font.BOLD, 16);
 
@@ -25,7 +23,7 @@ public class FirstFrame extends JFrame {
         container = getContentPane();
         setLayout(gridLayout);
 
-        // for layout setting
+        // This empty label is used to add space between components
         emptyLabel = new JLabel(" ");
         add(emptyLabel);
 
@@ -50,13 +48,13 @@ public class FirstFrame extends JFrame {
         add(NextPage);
 
         // instructor combo box adding
-        InstructorSelect = new JComboBox<>(Instructors);
+        InstructorSelect = new JComboBox(Instructors);
         InstructorSelect.setFont(f);
         InstructorSelect.setMaximumRowCount(2);
         add(InstructorSelect);
 
         // Instantiate ButtonHandler for button event handling
-        ButtonHandler handler = new ButtonHandler(this,null);
+        ButtonHandler handler = new ButtonHandler(this, null);
         // Pass 'this' to refer to the current FirstFrame instance
         // Pass null to refer to there in no need to refer to SecondFrame instance
 
@@ -73,7 +71,7 @@ public class FirstFrame extends JFrame {
         return NextPage;
     }
 
-    public JComboBox<String> getInstructorSelectComboBox() {
+    public JComboBox getInstructorSelectComboBox() {
         return InstructorSelect;
     }
 
