@@ -95,9 +95,9 @@ public class SecondFrame  extends JFrame {
         if (selected.equals("م. مازن ابوزاهر")) {
             SubjectList = new JList(Subjects0);
         } else if (selected.equals("د. رشاد رصرص")) {
-            SubjectList = new JList(Subjects1);
-        } else {
             SubjectList = new JList(Subjects2);
+        } else {
+            SubjectList = new JList(Subjects1);
         }
         SubjectList.setFont(f);
         add(SubjectList);
