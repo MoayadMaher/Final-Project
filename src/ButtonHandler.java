@@ -10,8 +10,8 @@ import java.awt.event.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ButtonHandler implements ActionListener {
-    private FirstFrame firstFrame;
-    private SecondFrame secondFrame;
+    private final FirstFrame firstFrame;
+    private final SecondFrame secondFrame;
 
     public ButtonHandler(FirstFrame firstFrame, SecondFrame secondFrame) {
         this.firstFrame = firstFrame;
@@ -34,31 +34,31 @@ public class ButtonHandler implements ActionListener {
 
         if (secondFrame != null) {
 
-            // go to the instructor's folder
             String selectedInstructor = firstFrame.getInstructorSelectComboBox().getSelectedItem().toString();
             String path = "C:\\Users\\mmj_p\\Documents\\JavaFinalProject\\" + selectedInstructor;
 
-            // set output text area to path
-            secondFrame.getOutputTextArea().setText(path);
-
-            /*
             if (event.getSource() == secondFrame.getAddStudentButton()) {
 
-                // get the student name and grade
+                // Get the student name and grade from the text fields
                 String studentName = secondFrame.getStudentNameTextField().getText();
                 String studentGrade = secondFrame.getStudentGradeTextField().getText();
 
-                // create the file if it doesn't exist
-                File file = new File(path + "\\" + secondFrame.getSubjectList().toString() + ".txt");
+                // Get the selected subject name from the JList
+                String selectedSubject = secondFrame.getSubjectList().getSelectedValue().toString();
 
+                // Construct the file path within the selected instructor's folder for the student's subject
+                String filePath = path + "\\" + selectedSubject + ".txt";
+                File file = new File(filePath);
+
+                // if file doesn't exist, create it'
                 if (!file.exists()) {
                     try {
                         file.createNewFile();
                     } catch (Exception e) {
                         System.out.println(e);
                     }
-
                 }
+
                 try {
                     FileWriter writer = new FileWriter(file, true);
                     writer.write(studentName + "\n");
@@ -68,7 +68,6 @@ public class ButtonHandler implements ActionListener {
                     System.out.println(e);
                 }
             }
-            */
 
 
 
@@ -89,6 +88,9 @@ public class ButtonHandler implements ActionListener {
             }
 
             // AvgMinMax Button handler
+            if (event.getSource() == secondFrame.getAvgMinMaxButton()) {
+
+            }
 
 
             // Back Button handler
